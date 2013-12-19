@@ -9,7 +9,7 @@ module RailsAdmin
   module Config
     module Actions
 
-      class Globalize < Base
+      class Globalize < RailsAdmin::Config::Actions::Base
 
         RailsAdmin::Config::Actions.register(self)
 
