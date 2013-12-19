@@ -17,12 +17,11 @@
 = javascript_include_tag "rails_admin/custom/rails_admin_globalize.js"
 = stylesheet_link_tag "rails_admin/custom/rails_admin_globalize.css"
 
-/%h2= I18n.translate("admin.actions.globalize.title")
-/%p= raw I18n.translate("admin.actions.globalize.subtitle", :locale_name => "<strong>#{I18n.locale}</strong>".upcase)
+%h2= I18n.translate("admin.actions.globalize.title")
+%p= raw I18n.translate("admin.actions.globalize.subtitle", :locale_name => "<strong>#{I18n.locale}</strong>".upcase)
 
 = form_for @object, :url => rails_admin.globalize_path(@object.class.to_s.split("::").map(&:underscore).join("~"), @object.id), :html => {:class => 'globalize-form'} do |form|
-  = hidden_field_tag 'target_locale', 'en'
-  /= select_tag 'target_locale', options_for_select(  @available_locales, @target_locale ), :id => "target_locale_select", :"data-target-url" => rails_admin.globalize_path(@object.class.to_s.split("::").map(&:underscore).join("~"), @object.id)
+  = select_tag 'target_locale', options_for_select(  @available_locales, @target_locale ), :id => "target_locale_select", :"data-target-url" => rails_admin.globalize_path(@object.class.to_s.split("::").map(&:underscore).join("~"), @object.id)
 
   - rails_admin_fields.keys.each do |t|
     %h5 #{@object.class.human_attribute_name(t.to_sym)}:
